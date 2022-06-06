@@ -1,3 +1,8 @@
+# Added by the suer
+.DS_Store
+.idea/
+*.iml
+
 # Compiled class file
 *.class
 
