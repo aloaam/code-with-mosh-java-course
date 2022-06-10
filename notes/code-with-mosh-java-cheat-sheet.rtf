@@ -1,0 +1,98 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14260\viewh14980\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+Generals:\
+\
+Safe refactoring - using your id to refactor.\
+Camel Humps\
+\
+\
+TODO: fill in here the 5 principles of OOP\
+\
+5 principles of OOP\
+	\
+Encapsulation\
+Abstraction\
+Inheritance\
+\
+\
+Java - Part 1\
+\
+Generals: Avoid \'93magic numbers and strings\'94:  even if you could just type: \
+\
+double yearlySalary = monthlySalary * 12;\
+\
+Is better to convert the magic number 12 to:\
+\
+\
+Int MONTHS_IN_A_YEAR = 12;\
+double yearlySalary = monthlySalary * MONTHS_IN_A_YEAR;\
+\
+*This example is too obvious, but in most of the cases, magic numbers are string are not obvious at all. This helps to self-document, and in some cases to avoid bugs\
+By updating just one constant.\
+\
+Java - Part 2\
+\
+\
+Memory Allocation\
+\
+	\
+	Stack is used for storing primitive types (numbers, boolean and characters) and variables that store references to objects in heap.\
+	Variables store in the stack are  immediately cleared when they go out of scope (i.e,, when a method finishes execution).\
+	Objects stored in heap get removed later on when they are no longer referenced. This is done by Javas garabatee collector.\
+\
+\
+Encapsulation:\
+\
+	1st principle of OOP: \'93Bundle the data and methods that operate on the data in a single unit\'94, I.e., use classes with fields, and methods which need those fields to operate.\
+\
+\
+Abstraction:\
+\
+	2nd principle of OOP: \'93Reduce complexity by hiding unnecessary details\'94, e.g., make internal methods private so that they cannot be called and reduce visual noise.\
+\
+Method Overloading\
+\
+	Avoid using overloading as a way to use default variables. \
+	It]s better applied when the parameters sent are completely different from each other, e.g., 2 strings, vs an object\'91.\
+\
+Constructor Overloading\
+\
+\
+Static Members\
+\
+	in OOP a class can have 2 types of members:\
+\
+	Instance members: belong to instances (objects)\
+	Static members: stores data which is independent of objects e.g., Employee.numberOfEmployees\
+\
+	Why is the \'93main\'94 method declared as static, (public static void main(String[] args) \{\} ?\
+\
+	To enable the Java RunTime to directly call this method without having to create a new object.\
+\
+	Examples:\
+		System.out.println().   \'93.out\'94 is a static field.\
+		Ingeger.parseInt().     \'93.parseInt()\'94 is a static method.\
+\
+	\
+\
+Refactoring Towards an OOP Design\
+\
+\
+Inheritance\
+\
+Inheritance\
+\
+	3rd principle of OOP: \
+\
+\
+\
+\
+\
+}
