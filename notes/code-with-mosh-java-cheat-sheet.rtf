@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2580
+{\rtf1\ansi\ansicpg1252\cocoartf2634
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
@@ -13,6 +13,12 @@ Safe refactoring - using your id to refactor.\
 Camel Humps\
 \
 \
+Annotations:\
+\
+	\'93A label that we attach to a class member, that gives extra information to the Java compiler\'94\
+\
+System.out.println, calls the .toString() method on any object which is sent to it.\
+\
 TODO: fill in here the 5 principles of OOP\
 \
 5 principles of OOP\
@@ -20,7 +26,7 @@ TODO: fill in here the 5 principles of OOP\
 Encapsulation\
 Abstraction\
 Inheritance\
-\
+Polymorphism\
 \
 Java - Part 1\
 \
@@ -58,6 +64,8 @@ Abstraction:\
 	2nd principle of OOP: \'93Reduce complexity by hiding unnecessary details\'94, e.g., make internal methods private so that they cannot be called and reduce visual noise.\
 \
 Method Overloading\
+	\
+	\'93Declaring a method several times, but with different signatures\'94, , (and in the end one calls the other)\
 \
 	Avoid using overloading as a way to use default variables. \
 	It]s better applied when the parameters sent are completely different from each other, e.g., 2 strings, vs an object\'91.\
@@ -86,13 +94,144 @@ Refactoring Towards an OOP Design\
 \
 \
 Inheritance\
+\'97\'97\'97\'97\'97\
 \
+	In Java, the object class \'93is the root of all classes\'94\
+	\
 Inheritance\
 \
 	3rd principle of OOP: \
 \
+	Base/Super/Parent:	The class which will have the members which will be inherited.\
+	Sub/Child:  The class that inherits members from Base class\
+\
+Object Class\
+\
+	Every class that we declare in Java inherits (directly or indirectly) from the \'93Object Class\'94\
+\
+Constructors and Inheritance\
+\
+	When you create an instance of a class which inherits from another, \
+		First the base class is instantiated and then the sub class.\
+\
+	Therefore, if the parent class needs parameters to instantiate we need to send them, the way to do it is to use:\
+		\
+		super();   super -> base class; () calls a constructor.    e.g. this(), calls the constructor of the current class.\
+\
+\
+Access Modifiers:\
+\
+	Private members are not inherit by sub classes.\
+\
+	protected: if a member of a class has the \'93protected\'94 modifier, it is visible to other objects \'93inside the same package\'94, i.e., classes created in the same package see them as if it were a public member.\
+\
+	BUT\
+\
+	they are also accessible by child classes in different classes.\
+\
+	Its considered a BAD PRACTICE, because its a little complicated, because it makes it harder to maintain the application.\
+\
+	the \'93default access modifier\'94. a field which is not specified, works as follows:\
+		\
+		is public anywhere in origin package\
+		private outside the origin package\
+\
+	Its also better to avoid it.\
+\
+Overriding Methods:\
+\
+	Uses @Override annotation, be sure it has the same signature and return type.\
+\
+\
+Upcasting & Downcasting\
+\
+		Upcasting: casting an object to one of its \'93super\'94 types.\
+	Downcasging: casting it to one of it subtypes.\
+\
+	\
+	Inheritance is a \'93is a - relationship\'94 a child \'93is-a\'94 parent too, so, you can send a child as an argument which expects a parent. The compiler \'93upcasts\'94 the class to the parent and accepts it. \
+	\
+	This might lead to a problem in which you send a parent object which expects the parent and then you don\'92t have the methods fro the child.\
+\
+	In this case we need to downcast the object, which means casting the argument sent (parent) to a child, 	\
+\
+\
+Comparing Objects:\
+\
+	For custom classes, you might want to override the .equals() from the Object class, because that compares the address on the heap. And you might want to check if some of the fields have the same value, e.g. comparing Point(x, y) objects.\
+\
+	To do so, we need to override it and that means we need to respect the signature of the Object.equals() which is:\
+		public boolean equlas(Object obj) \{\}\
+\
+	Therefore we need to send an Object, and then downcasting to the class that we want to override:\
+\
+		var other = (Point) obj (for the example of the Point class above).\
+\
+	Note, in this case, because Object is a parent to every class, we would be able to send any class, so we need to make sure that the send class is of type Point\
+\
+	if (obj instances Point)\
+\
+\
+	Pro tip: when overriding the equals() , the first step you want to take is to check if they both have the same address in memory:\
+\
+	if (this == obj), which will assure that they are the same object.\
+\
+\
+	BEST PRACTICE: when overriding .equals() .hashCode() should be also overwritten. TODO\'85 I was getting tired. \
+\
+	Objects.hash(member1, member2 \'85, member)\
+\
+	This is to make sure that if the equals will return true, then the hashCode() will also return the same value.\
+\
+	PRO PRO tip: IntelliJ can overwrite both classes for you.\
+\
+\
+Polymorphism\
+\
+	4th principle of OOP\
+\
+\
+	Specifying a method in a Base class, empty, because you know that the child will need them, but every class will need a specific implementation.\
+\
+	A use case would be,\
+\
+	Having to call the overwritten method, for an array of child objects, so instead of asking which type is each child, you just call the method which already has a different implementation of that method.\
+\
+	Each child is taking \'93many different forms\'94.\
+\
+\
+Abstract classes and methods\
+\
+	Its a template, you cannot instantiate it (only extend it) , but you can inherit the methods.\
+	\
+	Both classes and methods can be abstract.\
+\
+Final classes and methods\
+\
+	When a class is final we cannot extend it anymore. Final classes is not a good practice, it has to be used only when it is very very specific.\
+\
+	An example of a final class is the String class; because it is immutable, that\'92s the assumption, so its final so that nobody extends it and then go over that assumption and breaks sth.\
+\
+	Final methods, cannot be overwritten either, so that nobody can change assumptions made in it.	\
+\
+Deep Inheritance Hierarchies\
+\
+	\'93Too much of a good thing is a bad thing\'94, in inheritance too, because it becomes difficult to maintain. \
+\
+	Even if there are no breaking changes you need to rebuild all child, grandchild,\
+\
+\
+Multiple Inheritance,\
+	\
+	A class can have several parents.\
+	Its not implemented in Java, (whereas in other languages it is) because it brings complexity.\
+	\
+\
+	They are trying to avoid the \'93Diamond Problem\'94\
 \
 \
 \
+Interfaces\
+\'97\'97\'97\'97\
 \
-}
+	}
