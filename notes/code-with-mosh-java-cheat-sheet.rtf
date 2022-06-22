@@ -2,15 +2,20 @@
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww14260\viewh14980\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww17660\viewh18240\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 \
 \
 Generals:\
 \
+Imperative programming -> Implementing the logic using instructions\
+Declarative programming -> You specify what needs to be done.\
+\
 Safe refactoring - using your id to refactor.\
 Camel Humps\
+\
+Convention for Utility methods, is to create them static, so that you don\'92t have to declare them.\
 \
 \
 Annotations:\
@@ -234,6 +239,575 @@ Multiple Inheritance,\
 Interfaces\
 \'97\'97\'97\'97\
 \
-Text to check the commit.\
+What are interfaces\
+\
+We use interfaces to create. Loosely-coupled, extensible and testable applications.\
+\
+\
+Tightly Coupled Code\
+\
+\
+Creating an Interface\
+\
+No need to declare access modifier on an interfaces, because it has to be implemented by a class, and there HAS TO be public so that can be accesses by other classes.\
+\
+Dependency Injection\
+\
+Creating an instance of a class and using it are \'93different concerns\'94 and this is called \'93The Separation of Concerns\'94\
+\
+\
+There are three ways to inject this components to a classes:\
+\
+Constructor Injection\
+Setter Injection\
+Method Injection\
+\
+\
+Constructor Injection:\
+\
+Injects the dependency via the constructor. \
+\
+\
+Needs to declare the field, and on the construction the dependency is passed. And the constructor must have the \'93interface\'94 (programming against interfaces), the code that instantiates the object, should have the implementation of the interface.\
+\
+\
+There exist dependency injection frameworks (like Spring) which does the injection behind the scenes.\
+\
+\
+\
+Setter Injection:\
+\
+The class needs to be injected after construction:\
+\
+Pros:\
+	The implementation can change over the lifetime of the object.\
+\
+Cons:\
+	Difficult to maintain. \
+	\
+\
+Method Injection:\
+\
+	You inject at the moment that you need to execute the method you want.\
+\
+\
+Interface Segragation Principle:\
+\
+	\'93Each interface should be focused on a single capability\'94\
+\
+	Interfaces should be relatively small in terms of methods, and that are really related, otherwise, changes on one of this methods, will break the code, and will impact a lot of classes, if there are several not highly related methods.\
+\
+	And you can implement several interfaces on the same class. (An interface can have multiple parents; a class not)\
+\
+\
+\
+New features added to Java, which, are bad features, and shouldn\'92t be used unless strictly necessary.\
+\
+Fields:\
+\
+	Adding fields to interfaces\
+	\
+	Purpose: avoid using magic numbers, \
+	Problem: It is difficult to find a variable that doesn\'92t change, and even if you find something that doesn\'92t chante, all classes will see implementation details, (breaks the abstraction principle).\
+\
+Static Methods:\
+\
+	It lets add the implementation to a this methods in the interface, which should not be done in the interface.\
+	If what you are worried is that a lot of classes use this logic, and don\'92t wanna write it down, in all of the, then, what you are looking for is an abstract class, where the abstract class is the one implementing the interface.\
+	\
+\'93How\'92s doesn\'92t belong to interfaces; they belong to classes\'94\
+\
+Private Methods:\
+\
+	Private methods are implementation details, which shouldn\'92t be there.\
+\
+\
+	\
+Interfaces vs Abstract Classes\
+	\
+\
+	Interfaces:  Contracts (without code or implementation) Used to build loosley-coupled, extensible, testable applications.\
+	Abstract Classes: Partially Completed Classes, might have or not implementation, but have generals, that Childs will inherit. Use to share code.\
+\
+	The bad features added in Java to interfaces, are used as a hack to achieve multiple inheritance.\
+	\
+\
+\
+When to use Interfaces:\
+\
+	\
+	Loosely couple classes\
+	When you are using third party services,\
+	If you want to do unit-testing on your classes.\
+\
+\
+\
+Java - Part 3\
+\
+Exceptions\
+\'97\'97\'97\'97\'97 \
+\
+\
+What are Excpetions:\
+\'97\'97\'97\'97\'97\'97\'97\'97 \'97 \
+	\
+	An Exception is an Object that contains information about an error. \
+\
+	There are several Exception classes.\
+\
+	When an exception happens then the java RunTime looks for an Exception Handler in the class where it occurred,\
+\
+	The stack trace shows the chain of methods, that occurred to got the the line which caused the exception. The method which run that exception.\
+\
+	When this happens the java runtime looks for the exception handler, if it doesn\'92t find it, it goes to the previous method on the order of the stack trace.\
+\
+	Until it gets to the entry point of the program, and shows the exaction if it was never handled.\
+\
+	\
+	\
+Types of Exceptions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+	Checked Exceptions: Exceptions that are anticipated by the user. They are checked at compile time. Anticipations that we anticipate.\
+	They are called like that because are checked by the compiler at compile time.\
+\
+	Unchecked Exceptions: Exceptions that should be prevent by good coding practices and testing.\
+\
+	Error: An external error on the application, like outOfMemory Error.\
+\
+Exception Hierarchy\
+\'97\'97\'97\'97\'97\'97\'97\'97 \'97 \
+\
+	\
+	Throwable: Base class of all exceptions: Has common characteristics like error message and stack trace. \
+\
+		(2) Exception & Errors\
+		\
+	   		Exception: Parent for al checked and unchecked exception.\
+			By convention all classes that come from Runtime Exception are unchecked exceptions.\
+\
+\
+			Error\
+\
+			\
+Catching Exceptions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+	try \{\}\
+	catch (Type of Exception ex) \{\
+		sout(ex) add context.\
+\}\
+\
+\
+\
+Catching Multiple Type of Exceptions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+	try \{\}\
+	catch (FileNotFoundException ex) \{\
+		sout(ex) add context.\
+ 	\} \
+	catch (IOException) \{\
+	\}\
+\
+	Whatever catch gets executed first will be the only one executed.\
+\
+\
+	Sometimes the order matters, \
+\
+\
+	If you want to treat exceptions in the same way, then you need to put them in the cathc() with just one pipe \'93 | \'93 in between.\
+\
+\
+	\'85catch (IOExcption | ParseException e) \{\
+	\} \
+	\
+	what happens with the \'93e\'94\
+\
+\
+The finally Block\
+\'97\'97\'97\'97\'97\'97\'97\
+\
+	# AutoClosable class\
+\
+	finally is a block which executes regardless of if it is there an exception or not, this is good to close connections for example.\
+\
+\
+\
+\
+The try-with resources Statement\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+	try ( resource e.g,. Var reader = new FileReader() )\
+\
+\
+	this will close automatically, without using the finally block, but it requires that the FileReader in this case, has the autoclosable interface.\
+\
+\
+\
+\
+\
+Throwing Exceptions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+	throw new TypeOfExcption()\
+\
+\
+	if we use it, this is called, defensive programming (validating and throwing ecpeiton) preventing from something bad to happen down the road, or to allow for a bug.\
+\
+	\
+\
+Re- Throwing Exception\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+	public void methodName() throws TypeException\
+\
+		throw new TypeExcpetion\
+\
+\
+Custom-Exceptions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+	Create a folder\
+\
+	iF\
+\
+	Checked Exception has to extends Exception\
+	Unchecked exception has to extend runtime exception\
+\
+	example\
+\
+	public class NewException extends \'85\{\
+\
+		public NewExcpeiton() \{\
+			super(\'93Message\'94)\
+	\
+		super class newException (String message) \{\
+			super(message)		\
+\
+\
+\}\
+\
+\}\
+\}\
+\
+\
+Chaining Exceptions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+\
+\
+\
+  -  Generics  \
+     \'97\'97 \'97\'97\
+\
+The need of generics\
+	\
+	Starts describing how to create a list to build on it on the next videos.\
+\
+\
+A poor soluciton\
+\
+	 Implement a list (or the class that you need) with the \'93root of all classes\'94 the Object class.\
+\
+	But this will create type safe issues because,, you can try to cast something into something it can\'92t be caste.\
+\
+\
+\
+Generic Classes:\
+\
+	After the class declaration we use <T>, e.g., public class GenericList<T> \{\}\
+\
+	T stands for Type, or Template, which is the most used convention. E (as in element) can also be used when creating a collection, but is less used.\
+\
+	in general you can use any type, but the conventions are the ones above.\
+\
+\
+	This gives type safety, because once a generic class is instantiated with a specific type, and the ide will show a compile time error if you not use it properly.\
+\
+	Compile time type safety.\
+\
+\
+Generic and Primitive Types:\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+	Generic classes doesn\'92t accept primitive types, so in case we want to use one, we need to use the wrapper class corresponding to its primitive.\
+\
+	This will lead to the following to processes when using a generic class:\
+\
+	Boxing, and unboxing.\
+\
+	So, we are forced to declare the generic class with a Wrapper of a primitive type, but when we use it we can pass primitive types (not the wrappers)\
+	and the java compiler will cast it to its wrapper, this is the boxing process.\
+\
+	Unboxing happens, when you call a method and get a variable from the generic class, in this case you can Storie it in a variable define as a primitive type,\
+And the java compiler will do the casting so that it can be stored.\
+\
+\
+Constraints\
+\'97\'97\'97\'97\'97\'97\
+\
+	You can extend a class to extend the bound of the generic class, if you extend it to a class, then you can send any class of that type and all of the child classes from or a class that implements the base class.\
+	\
+	Example of a bounded type parameter, to comparable and clonabe\
+	GenericList< T extends Comparable & Clonable> can take any of these two. It has ONLY one amperson (&)\
+\
+\
+\
+Type Ereasure\
+\'97\'97\'97\'97\'97\'97\'97 \
+\
+	Behind the hood, the java compiler converter the \'93T\'94 to Object classes, \
+\
+	If you extend the class to a bounded generic class, the \'93T\'94 are converted to the Class you are extending, \
+\
+	But, if you extend to bound to 2 classes, the java compiler takes the more left one, and this is called type erasure.\
+\
+\
+Comparable Interfaces\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \
+\
+TODO: this is good, but I was too tired.\
+\
+\
+\
+Generic Methods\
+\'97\'97\'97\'97\'97\'97\'97\'97 \
+\
+	You can create a generic method inside a non-generic class.\
+\
+	TODO: needs to understand the previous one too.\
+	\
+	\
+\
+\
+Collections\
+\'97\'97\'97\'97\'97\'97\
+\
+Overview of Collections Network\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Iterable\
+	Collection\
+		List\
+			ArrayList\
+			LinkedList\
+\
+		Queue\
+			PriorityQueue		\
+		\
+		Set\
+			HashSet\
+\
+Just ArrayList, LinkedList, PriorityQueue, and HashSet are Classes\
+\
+\
+The need for Iterables\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Noup\
+\
+\
+The Iterable Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Allows you to code against the Iterable Interface, in practice, you can use a .forEach on any class which implements the Iterable Interface\
+\
+\
+\
+The Collection Inteface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Declares the following methods:\
+\
+add()\
+remove()\
+contains()\
+\
+Its a Generic Interface but instead of using the T, uses E which stands for element; element of a collection.\
+\
+\
+\
+The List Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\
+In Lists you take care of the order, and therefore, of fetching elements in it by index.\
+\
+\
+list.sublist - > anlogue to slice in python lists\
+\
+\
+\
+The Comparable Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \
+\
+This allows methods like Collection.sort() to order subclasses of Collection; like ArrayLists\
+\
+\
+\
+The Comparator Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Very similar to the Comparable Interface, but  //TODO \
+\
+\
+The Set Interface\
+\'97\'97\'97\'97\'97\'97\'97\
+\
+Stores unique values.\
+\
+Doesn\'92t guarantees the order, just uniqueness\
+\
+Most used implementation: HashSet<>(), \
+\
+\
+3 operations\
+\
+Union: Sert.addAll()\
+Intersection: Set.retainAll(), \
+Difference: set1.removeAll(set2), remove everyhing on set2 and keeping the rest.\
+\
+\
+Hash Tables\
+\'97\'97\'97\'97\'97\
+\
+Stores data but in a different way that in which a List or set would do it, and it is done in this way, to access data not costly, \
+\
+It can find an object using just one comparison ; i.e, O(1)\
+\
+\
+\
+The Map Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\
+HashMap is the most used implementation.\
+\
+\
+Useful methods\
+\
+.put()\
+.getOrDefault()\
+.containsKey()\
+.replace()	\
+	\
+\
+iTS NOT ITERABLE.\
+\
+\
+You can iterate over, \
+\
+map.keySet() which returns  a Collection of the keys\
+map.entrySet().  Set<Map> , and the set is utterable\
+map.values() , returns a Collection of customers, the order is not guaranteed.\
+\
+\
+\
+\
+Lambda Expressions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Introduction\
+\'97\'97\'97\'97\'97\
+They were introduced in Java8, allows to use functional programming techniques in Java.\
+\
+Functional Interfaces\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+ An interface which has only one abstract method.\
+\
+\
+Anonymous Inner Classes\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+A class which has no name. You can pass it as an argument, defining it at that same time. And were replaced by Java8 with the lambdas expressions.\
+\
+\
+A Lambda Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+It is like an anonymous function that can be sent around:\
+\
+\
+Santax,\
+\
+(parameters...) -> \{today of the code\}                               ->. is the lambda operator.\
+\
+A functional interface can be represented using a lambda expression.\
+\
+In the () the parameters doesn\'92t need the type of variable, because it is inferred, checking the interface against it is being used.\
+\
+If there is only one parameter, it doesn\'92t need parenthesis,\
+If there is only one line of code it doesn\'92t need \{\}\
+\
+\
+Example\
+\
+function(message -> System.out.println(message));\
+Lambda expressions are objects, but they can be used to represent anonymous functions.\
+\
+Variable Capture\
+\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Lambdas can access the instance fields and static fields.\
+In lambda expressions this refers to the class where the lambda expression is written, NOT the lambda expression object.\
+\
+\
+Method References\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Class/Object::method.            (Method without parenthesis)\
+\
+ \
+\
+Built-in Functional Interfaces\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+All of the functional interfaces in Java fall under one of the following interfaces\
+\
+Consumers : Takes a single argument and returns not result, it consumes a value. \
+Suppliers : Opposite of Consumer, takes no argument but returns a value; supplies a value.\
+Functions : Function that can map a value to a different value.\
+Predicate : Takes an object and checks if it satisfies certain criteria; we use it for filtering data.\
+\
+\
+Consumer Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Some variations\
+\
+BiConsumer () Takes 2 arguments\
+\
+IntComsumer () takes ints, its more efficient, \
+LongConsumer()\
+DoubleConsumer()\
+\
+\
+Example:   Consumer <? Super Integer>   this tells you that this method, is expecting a Consumer of an integer.\
+\
+The consumer is an abstract interface, and therefore, can reproduce it using a lambda expression, which can be inserted as argument.\
+\
+\
+\
+Chaining Consumers\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Use the .andThen(has to be a consumer that matches the same signature)\
+\
+\
+The supplier Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 \
 	}
