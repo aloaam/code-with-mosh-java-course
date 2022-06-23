@@ -10,7 +10,7 @@
 Generals:\
 \
 Imperative programming -> Implementing the logic using instructions\
-Declarative programming -> You specify what needs to be done.\
+Declarative programming -> You specify what needs to be done. When you use declarative programming is better to put each new function in a separate line, as we do when we use streams.\
 \
 Safe refactoring - using your id to refactor.\
 Camel Humps\
@@ -788,13 +788,61 @@ The consumer is an abstract interface, and therefore, can reproduce it using a l
 \
 Chaining Consumers\
 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
-\
 Use the .andThen(has to be a consumer that matches the same signature)\
 \
 \
 The supplier Interface\
 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
 \
+Opposite of the consumer Interface, \
+\
+Receives nothing and returns a something, its an abstract interface and as such it can be expressed using a lambda expression. \
+\
+\
+The function interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Takes a an argument T(type),  and returns a value R(return)\
+\
+\
+Composing Functions\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+2 ways:\
+One way is using:  Function.andThen(OtherFunction) \
+Use Function.compose(OtherFunction), this works in the opposite direction that the \
+\
+\
+The Predicate Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Has one abstract method : test(T) which returns a boolean, so we use it to check sth.\
+\
+\
+Combining Predicates\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Using, \
+\
+Predicate.and().    ( && )\
+Predicate.or().       (  ||. )\
+Predicate.negate().  ( ! )\
+\
+\
+\
+The Binary Operator Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Has to operands of type T, and returns 1 result of type T as well. Like adding \
+\
+\
+The UnaryOperator Interface\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Takes an argument of type T and returns a value of type T, as well.\
+\
+\
+Summary\
+\'97\'97\'97\'97\'97\
 \
 \
 \
