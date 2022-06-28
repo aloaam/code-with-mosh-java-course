@@ -1,8 +1,8 @@
 # Code With Mosh - Java Course
 
-## What is it?
-
 >Master the Coding Skills to Become an Engineer Companies LOVE to Hire.
+
+## What is it?
 
 **code with mosh - java course** is the repo where I store the exercises of the course, with this name create by **Mosh Hamedani**.
 
